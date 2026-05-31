@@ -41,7 +41,7 @@
       height: 100vh !important;
     }
   </style>
-<link rel="modulepreload" href="/Aethergene-c09b8aa300daec54.js" crossorigin="anonymous" integrity="sha384-SJdxJO/JVqW+U1Zzplvo6KhvOagrupX5OxgcX65QuPPQh9qD2B6ojXc/esOOGTfZ"><link rel="preload" href="/Aethergene-c09b8aa300daec54_bg.wasm" crossorigin="anonymous" integrity="sha384-/meDdU5f9sweozMJPQ0WXYr1TvSONFCPYBNIThEMcvTIHk5OJFsy0qkwAzLpxHbt" as="fetch" type="application/wasm"></head>
+<link rel="modulepreload" href="/Aethergene-web/Aethergene-c09b8aa300daec54.js" crossorigin="anonymous" integrity="sha384-SJdxJO/JVqW+U1Zzplvo6KhvOagrupX5OxgcX65QuPPQh9qD2B6ojXc/esOOGTfZ"><link rel="preload" href="/Aethergene-web/Aethergene-c09b8aa300daec54_bg.wasm" crossorigin="anonymous" integrity="sha384-/meDdU5f9sweozMJPQ0WXYr1TvSONFCPYBNIThEMcvTIHk5OJFsy0qkwAzLpxHbt" as="fetch" type="application/wasm"></head>
 <body>
   <div id="loading">
     <h1>Aethergene</h1>
@@ -74,8 +74,8 @@
 
   
 <script type="module">
-import init, * as bindings from '/Aethergene-c09b8aa300daec54.js';
-const wasm = await init({ module_or_path: '/Aethergene-c09b8aa300daec54_bg.wasm' });
+import init, * as bindings from '/Aethergene-web/Aethergene-c09b8aa300daec54.js';
+const wasm = await init({ module_or_path: '/Aethergene-web/Aethergene-c09b8aa300daec54_bg.wasm' });
 
 
 window.wasmBindings = bindings;
