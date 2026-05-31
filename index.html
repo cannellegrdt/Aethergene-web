@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aethergene — Evolutionary ecosystem simulator</title>
+  <title>Aethergene</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: #0d1117;
-      color: #c9d1d9;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
       overflow: hidden;
+      background: #0d1117;
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
     }
     #loading {
       position: fixed;
@@ -22,54 +29,36 @@
       gap: 16px;
       background: #0d1117;
       z-index: 100;
-      transition: opacity 0.5s;
     }
     #loading h1 { font-size: 2rem; color: #58a6ff; }
-    #loading p  { color: #8b949e; font-size: 0.9rem; }
-    #loading .bar-outer {
-      width: 300px; height: 6px;
-      background: #21262d; border-radius: 3px; overflow: hidden;
-    }
-    #loading .bar-inner {
-      height: 100%; width: 0%;
-      background: #58a6ff; border-radius: 3px;
-      transition: width 0.3s;
-    }
-    canvas {
-      display: block;
-      width: 100vw !important;
-      height: 100vh !important;
-    }
+    #loading p  { color: #8b949e; }
   </style>
-<link rel="modulepreload" href="/Aethergene-web/Aethergene-ebdd4570db6296d5.js" crossorigin="anonymous" integrity="sha384-yupZjOVCg566KYXpEMQFJTtRqD2Z7tcMGj6UnxNz++NHs+0kH3dAJQ8FFAy083u1"><link rel="preload" href="/Aethergene-web/Aethergene-ebdd4570db6296d5_bg.wasm" crossorigin="anonymous" integrity="sha384-jMebHMRvZoDsYLzP0uPJLLIrNPnbVkKjKrt2He8zhWsCLZlm0LbVUpuMCnHJ7r8F" as="fetch" type="application/wasm"></head>
+<link rel="modulepreload" href="/Aethergene-web/Aethergene-ebdd4570db6296d5.js" crossorigin="anonymous" integrity="sha384-yupZjOVCg566KYXpEMQFJTtRqD2Z7tcMGj6UnxNz++NHs+0kH3dAJQ8FFAy083u1"><link rel="preload" href="/Aethergene-web/Aethergene-ebdd4570db6296d5_bg.wasm" crossorigin="anonymous" integrity="sha384-UywRWr1AXgwAAeSW++fRtWJrdpxRQ5iIWqgrbuRUYA7g1/Ep0MvJucPksh2PuMK7" as="fetch" type="application/wasm"></head>
 <body>
   <div id="loading">
     <h1>Aethergene</h1>
-    <p>Loading simulation engine...</p>
-    <div class="bar-outer"><div class="bar-inner" id="progress-bar"></div></div>
-    <p id="loading-status" style="font-size:0.8rem; color:#58a6ff"></p>
+    <p>Loading simulation engine…</p>
   </div>
 
   <canvas id="aethergene_canvas"></canvas>
 
   <script>
-    let progress = 0;
-    const bar = document.getElementById('progress-bar');
-    const status = document.getElementById('loading-status');
-    const interval = setInterval(() => {
-      progress = Math.min(progress + Math.random() * 8, 90);
-      bar.style.width = progress + '%';
-    }, 200);
+    // Cacher le loader dès que le canvas a une vraie taille
+    const observer = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        if (entry.contentRect.height > 100) {
+          document.getElementById('loading').style.display = 'none';
+          observer.disconnect();
+        }
+      }
+    });
+    observer.observe(document.getElementById('aethergene_canvas'));
 
-    window.__aethergene_ready = () => {
-      clearInterval(interval);
-      bar.style.width = '100%';
-      status.textContent = 'Connected to simulation server…';
-      setTimeout(() => {
-        document.getElementById('loading').style.opacity = '0';
-        setTimeout(() => document.getElementById('loading').remove(), 500);
-      }, 300);
-    };
+    // Fallback : cacher après 5 secondes quoi qu'il arrive
+    setTimeout(() => {
+      const l = document.getElementById('loading');
+      if (l) l.style.display = 'none';
+    }, 5000);
   </script>
 
   
