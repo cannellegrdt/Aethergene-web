@@ -1,5 +1,3 @@
-<div align="center">
-
 # Aethergene
 
 **Agent-based evolutionary ecosystem simulator — Rust + WebAssembly**
@@ -10,8 +8,6 @@
 [![Live demo](https://img.shields.io/badge/Live%20demo-GitHub%20Pages-2ea44f?logo=github)](https://cannellegrdt.github.io/Aethergene-web/)
 
 [**→ Open live demo**](https://cannellegrdt.github.io/Aethergene-web/)
-
-</div>
 
 ---
 
