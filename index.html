@@ -35,7 +35,7 @@
     #loading h1 { font-size: 2rem; color: #58a6ff; }
     #loading p  { color: #8b949e; }
   </style>
-<link rel="modulepreload" href="/Aethergene-web/Aethergene-b83309879a161668.js" crossorigin="anonymous" integrity="sha384-ywpiGjY3hbZUu1NJ1/3ANjDi4etJfxLS3v1Dy6vOHmuCIcPyxG27N4QR0V7lvAhr"><link rel="preload" href="/Aethergene-web/Aethergene-b83309879a161668_bg.wasm" crossorigin="anonymous" integrity="sha384-nCct2NFpLyRYqQrpTV6uZWRmO7fTKg0npDgcX8kk5ubN4Tfe3O/CUfW0d/OKRIvm" as="fetch" type="application/wasm"></head>
+<link rel="modulepreload" href="/Aethergene-web/Aethergene-26370ec33aeba63c.js" crossorigin="anonymous" integrity="sha384-ywpiGjY3hbZUu1NJ1/3ANjDi4etJfxLS3v1Dy6vOHmuCIcPyxG27N4QR0V7lvAhr"><link rel="preload" href="/Aethergene-web/Aethergene-26370ec33aeba63c_bg.wasm" crossorigin="anonymous" integrity="sha384-n0IUgxVhBP9lXFQgGYziknTL4pzOzY1k1TtVj57FarwkWVzSTg2S6POlIjo2MJKf" as="fetch" type="application/wasm"></head>
 <body>
   <div id="loading">
     <h1>Aethergene</h1>
@@ -45,7 +45,6 @@
   <canvas id="aethergene_canvas"></canvas>
 
   <script>
-    // Cacher le loader dès que le canvas a une vraie taille
     const observer = new ResizeObserver(entries => {
       for (const entry of entries) {
         if (entry.contentRect.height > 100) {
@@ -56,7 +55,6 @@
     });
     observer.observe(document.getElementById('aethergene_canvas'));
 
-    // Fallback : cacher après 5 secondes quoi qu'il arrive
     setTimeout(() => {
       const l = document.getElementById('loading');
       if (l) l.style.display = 'none';
@@ -65,8 +63,8 @@
 
   
 <script type="module">
-import init, * as bindings from '/Aethergene-web/Aethergene-b83309879a161668.js';
-const wasm = await init({ module_or_path: '/Aethergene-web/Aethergene-b83309879a161668_bg.wasm' });
+import init, * as bindings from '/Aethergene-web/Aethergene-26370ec33aeba63c.js';
+const wasm = await init({ module_or_path: '/Aethergene-web/Aethergene-26370ec33aeba63c_bg.wasm' });
 
 
 window.wasmBindings = bindings;
